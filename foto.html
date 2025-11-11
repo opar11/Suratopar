@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foto Kenangan</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: url('BGOY.png') no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Canvas kembang api */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      /* di belakang tombol */
+    }
+
+    /* Tombol umum */
+
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ff4da6;
+      color: white;
+      width: 160px;
+      height: 120px;
+      margin: 15px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 6px 15px rgba(255, 77, 166, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      /* tombol di atas canvas */
+    }
+
+    .btn:hover {
+      background: #e60073;
+      transform: translateY(-3px);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Container tombol navigasi */
+    .nav-buttons {
+      display: flex;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Tombol kembali pojok kiri */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      border-radius: 30px;
+      padding: 10px 18px;
+      font-size: 14px;
+      width: auto;
+      height: auto;
+      z-index: 2;
+    }
+
+    /* Popup background */
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Isi popup */
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease;
+      z-index: 1000;
+    }
+
+    .popup-content h2 {
+      margin-bottom: 15px;
+      color: #ff4da6;
+    }
+
+    .popup-content input {
+      width: 80%;
+      padding: 10px;
+      border: 2px solid #ff4da6;
+      border-radius: 8px;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    .popup-content button {
+      background: #ff4da6;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .popup-content button:hover {
+      background: #e60073;
+    }
+
+    /* Animasi popup */
+    @keyframes fadeIn {
+      from {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Canvas untuk kembang api -->
+  <canvas id="fireworks"></canvas>
+
+  <!-- Container tombol navigasi -->
+  <div class="nav-buttons">
+    <a href="halamanfoto.html" class="gift-btn">
+      <img src="kado.png" alt="Foto">
+      <span class="label-box">Foto</span>
+    </a>
+
+    <div class="lock-btn" onclick="bukaPopup()">
+    <img src="img/img.png" alt="Kunci" class="lock-img">
+  </div>
+
+    <a href="halamanvidio.html" class="gift-btn">
+      <img src="kado.png" alt="Vidio">
+      <span class="label-box">Vidio</span>
+    </a>
+  </div>
+
+  <style>
+    .gift-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #ff4da6;
+      font-weight: bold;
+      font-size: 16px;
+      transition: transform 0.3s;
+    }
+
+    .gift-btn img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 8px;
+      transition: transform 0.3s;
+    }
+
+    .gift-btn:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Tambahan kotak untuk teks di bawah gambar */
+    .label-box {
+      background: rgba(255, 77, 166, 0.1);
+      border: 2px solid #ff4da6;
+      color: #ff4da6;
+      padding: 6px 14px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(255, 77, 166, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .gift-btn:hover .label-box {
+      background: #ff4da6;
+      color: white;
+      transform: scale(1.05);
+    }
+  </style>
+
+
+  <style>
+    .gift-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #ff4da6;
+      font-weight: bold;
+      font-size: 16px;
+      transition: transform 0.3s;
+    }
+
+    .gift-btn img {
+      width: 120px;
+      /* atur ukuran kado */
+      height: auto;
+      margin-bottom: 8px;
+      transition: transform 0.3s;
+    }
+
+    .gift-btn:hover img {
+      transform: scale(1.1);
+    }
+
+    .gift-btn span {
+      margin-top: 5px;
+    }
+  </style>
+
+
+  <!-- Tombol Kembali -->
+  <a href="index.html" class="btn back-button">⬅ Kembali</a>
+
+  <!-- Popup -->
+  <div id="popup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2>Masukan kode, clue nya kuku😁</h2>
+      <input type="password" id="kodeInput" placeholder="Kode rahasia...">
+      <br>
+      <button onclick="cekKode()">Kirim</button>
+      <button onclick="tutupPopup()" style="margin-top:10px;background:gray;">Batal</button>
+    </div>
+  </div>
+
+  <script>
+    function bukaPopup() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function tutupPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function cekKode() {
+      let kode = document.getElementById("kodeInput").value;
+      if (kode === "23") {
+        window.location.href = "halaman4.html";
+      } else {
+        alert("Kode salah! Tidak bisa masuk.");
+      }
+    }
+
+    // --- Animasi Kembang Api ---
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor(x, y, color, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.speedX = speedX;
+        this.speedY = speedY;
+        this.alpha = 1;
+        this.size = Math.random() * 3 + 2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.alpha -= 0.01;
+      }
+      draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    function createFirework(x, y) {
+      const colors = ["#ff4da6", "#ffcc00", "#00ffcc", "#ff3333", "#66ff66"];
+      for (let i = 0; i < 50; i++) {
+        let angle = Math.random() * 2 * Math.PI;
+        let speed = Math.random() * 4 + 1;
+        let speedX = Math.cos(angle) * speed;
+        let speedY = Math.sin(angle) * speed;
+        let color = colors[Math.floor(Math.random() * colors.length)];
+        particles.push(new Particle(x, y, color, speedX, speedY));
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].update();
+        particles[i].draw();
+        if (particles[i].alpha <= 0) {
+          particles.splice(i, 1);
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    // Buat kembang api otomatis tiap 1.5 detik
+    setInterval(() => {
+      let x = Math.random() * canvas.width;
+      let y = Math.random() * canvas.height * 0.7;
+      createFirework(x, y);
+    }, 1500);
+
+    animate();
+
+    // Resize responsif
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+
+</html>

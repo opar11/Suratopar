@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kenangan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: url('BGOY.png') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        h1 {
+            color: #ff66b2;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        /* Grid foto */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Slot foto */
+        .photo-slot {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff66b2;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .photo-slot:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 102, 178, 0.4);
+        }
+
+        .photo-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-slot:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Tombol kembali */
+        .back-button {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: rgba(255, 102, 178, 0.9);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(255, 102, 178, 0.3);
+            transition: 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-button:hover {
+            background: #e60073;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 102, 178, 0.5);
+        }
+
+        /* Lightbox popup */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(8px);
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 85%;
+            border-radius: 15px;
+            border: 3px solid #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            animation: zoomIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Tombol close */
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            font-weight: 300;
+            transition: 0.3s;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-btn:hover {
+            color: #ff66b2;
+            transform: scale(1.1);
+        }
+
+        /* Tombol unduh */
+        .download-btn {
+            margin-top: 30px;
+            background: #ff66b2;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(255, 102, 178, 0.4);
+            transition: 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #e60073;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 102, 178, 0.6);
+        }
+
+        /* Tombol navigasi kiri kanan */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 4rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 50%;
+            transition: 0.3s;
+            font-weight: 300;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 102, 178, 0.6);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="foto.html" class="back-button">⬅ Kembali</a>
+    <h1> Galeri Kenangan Kita Sengg ✨</h1>
+
+    <div class="gallery">
+        <div class="photo-slot"><img src="img/foto1.jpg" alt="Foto 1" onclick="openLightbox(0)"></div>
+        <div class="photo-slot"><img src="img/foto2.jpg" alt="Foto 2" onclick="openLightbox(1)"></div>
+        <div class="photo-slot"><img src="img/foto3.jpg" alt="Foto 3" onclick="openLightbox(2)"></div>
+        <div class="photo-slot"><img src="img/foto4.jpg" alt="Foto 4" onclick="openLightbox(3)"></div>
+        <div class="photo-slot"><img src="img/foto5.jpg" alt="Foto 5" onclick="openLightbox(4)"></div>
+        <div class="photo-slot"><img src="img/foto6.jpg" alt="Foto 6" onclick="openLightbox(5)"></div>
+        <div class="photo-slot"><img src="img/foto7.jpg" alt="Foto 7" onclick="openLightbox(6)"></div>
+        <div class="photo-slot"><img src="img/foto8.jpg" alt="Foto 8" onclick="openLightbox(7)"></div>
+        <div class="photo-slot"><img src="img/foto9.jpg" alt="Foto 9" onclick="openLightbox(8)"></div>
+        <div class="photo-slot"><img src="img/foto10.jpg" alt="Foto 10" onclick="openLightbox(9)"></div>
+        <div class="photo-slot"><img src="img/foto11.jpg" alt="Foto 11" onclick="openLightbox(10)"></div>
+        <div class="photo-slot"><img src="img/foto12.jpg" alt="Foto 12" onclick="openLightbox(11)"></div>
+        <div class="photo-slot"><img src="img/foto13.jpg" alt="Foto 13" onclick="openLightbox(12)"></div>
+        <div class="photo-slot"><img src="img/foto14.jpg" alt="Foto 14" onclick="openLightbox(13)"></div>
+        <div class="photo-slot"><img src="img/foto15.jpg" alt="Foto 15" onclick="openLightbox(14)"></div>
+        <div class="photo-slot"><img src="img/foto16.jpg" alt="Foto 16" onclick="openLightbox(15)"></div>
+        <div class="photo-slot"><img src="img/foto17.jpg" alt="Foto 17" onclick="openLightbox(16)"></div>
+        <div class="photo-slot"><img src="img/foto18.jpg" alt="Foto 18" onclick="openLightbox(17)"></div>
+        <div class="photo-slot"><img src="img/foto19.jpg" alt="Foto 19" onclick="openLightbox(18)"></div>
+        <div class="photo-slot"><img src="img/foto20.jpg" alt="Foto 20" onclick="openLightbox(19)"></div>
+        <div class="photo-slot"><img src="img/foto21.jpg" alt="Foto 21" onclick="openLightbox(20)"></div>
+        <div class="photo-slot"><img src="img/foto22.jpg" alt="Foto 22" onclick="openLightbox(21)"></div>
+        <div class="photo-slot"><img src="img/foto23.jpg" alt="Foto 23" onclick="openLightbox(22)"></div>
+        <div class="photo-slot"><img src="img/foto24.jpg" alt="Foto 24" onclick="openLightbox(23)"></div>
+        <div class="photo-slot"><img src="img/foto25.jpg" alt="Foto 25" onclick="openLightbox(24)"></div>
+        <div class="photo-slot"><img src="img/foto26.jpg" alt="Foto 26" onclick="openLightbox(25)"></div>
+        <div class="photo-slot"><img src="img/foto27.jpg" alt="Foto 27" onclick="openLightbox(26)"></div>
+        <div class="photo-slot"><img src="img/foto28.jpg" alt="Foto 28" onclick="openLightbox(27)"></div>
+        <div class="photo-slot"><img src="img/foto29.jpg" alt="Foto 29" onclick="openLightbox(28)"></div>
+        <div class="photo-slot"><img src="img/foto30.jpg" alt="Foto 30" onclick="openLightbox(29)"></div>
+        <div class="photo-slot"><img src="img/foto31.jpg" alt="Foto 31" onclick="openLightbox(30)"></div>
+        <div class="photo-slot"><img src="img/foto32.jpg" alt="Foto 32" onclick="openLightbox(31)"></div>
+        <div class="photo-slot"><img src="img/foto32.jpg" alt="Foto 33" onclick="openLightbox(32)"></div>
+    </div>
+
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">✖</span>
+        <button class="nav-btn prev-btn" onclick="prevImage()">❮</button>
+        <img id="lightbox-img" src="" alt="Foto besar">
+        <button class="nav-btn next-btn" onclick="nextImage()">❯</button>
+        <button id="downloadBtn" class="download-btn" onclick="downloadImage()">⬇ Unduh Foto</button>
+    </div>
+
+    <script>
+        const images = [
+            "img/foto1.jpg", "img/foto2.jpg", "img/foto3.jpg", "img/foto4.jpg", "img/foto5.jpg",
+            "img/foto6.jpg", "img/foto7.jpg", "img/foto8.jpg", "img/foto9.jpg", "img/foto10.jpg",
+            "img/foto11.jpg", "img/foto12.jpg", "img/foto13.jpg", "img/foto14.jpg", "img/foto15.jpg",
+            "img/foto16.jpg", "img/foto17.jpg", "img/foto18.jpg", "img/foto19.jpg", "img/foto20.jpg",
+            "img/foto21.jpg", "img/foto22.jpg", "img/foto23.jpg", "img/foto24.jpg", "img/foto25.jpg",
+            "img/foto26.jpg", "img/foto27.jpg", "img/foto28.jpg", "img/foto29.jpg", "img/foto30.jpg",
+            "img/foto31.jpg", "img/foto32.jpg", "img/foto33.jpg"
+        ];
+
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById("lightbox").style.display = "flex";
+            document.getElementById("lightbox-img").src = images[currentIndex];
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            document.getElementById("lightbox-img").src = images[currentIndex];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById("lightbox-img").src = images[currentIndex];
+        }
+
+        function downloadImage() {
+            const link = document.createElement("a");
+            link.href = images[currentIndex];
+            link.download = "kenangan-" + Date.now() + ".jpg";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+
+</html>

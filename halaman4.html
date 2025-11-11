@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kotak Foto dengan Caption</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('BGOY.png') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* Tombol kembali pink di pojok kiri */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 25px;
+      background-color: #ff4da6;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .back-button:hover {
+      background-color: #ff69b4;
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(255, 77, 166, 0.6);
+    }
+
+    .back-button::before {
+      content: "←";
+      font-size: 18px;
+    }
+
+    /* Kotak foto */
+    .photo-box {
+      margin-top: 80px;
+      display: inline-block;
+      background: #fff;
+      border: 4px solid #ffffff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .photo-box img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 90vw;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+
+    .photo-box:hover {
+      transform: scale(1.03);
+    }
+
+    /* Box caption */
+    .caption-box {
+      margin: 30px 20px 60px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 2px solid #ff4da6;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+      color: #333;
+      text-align: justify;
+      line-height: 1.7;
+      backdrop-filter: blur(4px);
+      max-width: 800px;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="foto.html" class="back-button">Kembali</a>
+
+  <div class="photo-box">
+    <img src="img/mahal.jpg" alt="Foto kenangan">
+  </div>
+
+  <div class="caption-box">
+    <p>
+      hi, aku punya cerita kenal sama seseorang yang awal kenal sama sekali ga kebayang bakal sejauh ini setelah kenal
+      lama,
+      aku bisa tau ada cwe secantik sebaik ini dari sw(status wa)nya sepupu aku, Waktu itu pas lagi iseng liat status
+      Waktu itu kalo ga salah sekitar pagi ke arah siang gitu liat status sepupu aku, aku langsung salfok pas liat ada
+      kamu itu(skrng jdi cwe aku), kenapa bisa salfok? ya gatau aku juga mungkin namanya cinta? wkwkwkwk, abis itu liat
+      sw gak langsung aku respon buat minta wa nya, tapi gatau kenapa pas sore itu sw nya masi ada pas aku liatin makin
+      diliat makin penasaran sm ni cewe cantik baik, yauda akhirnya aku reply itu sw aku bilang "eh yg pake topi minta
+      wa nya dong" wkwkw aku inget bgt gila pake topi sm pake baju olahraga cantikkkk bangetttttt kwkwkw ,abistu aku
+      ngechat lah yaa sepak sepikk gituuu tp aku lupaa awalnya cht apaaa cht an nyaa udah ilanggggg karna udah lamaaa🥺,
+      abis cht cht inii ituuu aku juga nanya nanya ni cewe ke sepupu aku (temen kelasannya) aku nanyaa lah kaya orang
+      manaaa tinggal dimanaa gituu, abistu aku cht cht nanya nanya orang mana ke ni cewe cantik nahh kamu jawab suruh
+      nebak gituuu, abistu aku ngcht sepupu aku lagii aku bilang " eh ini aing jawab anak ciomas gitu ya kalo bener lu
+      jadi cwe aku wkwkwkkwk" (voice note), abis bilang kaya gitu aku bales cht kamu aku bilang kalo kamu orang ciomasss
+      dan ternyata balesan kamu kalo aku salahhh nebaknyaaa huhuhuuuuu gajadi pacar aku🥲 (tpi sekarang udah jadii cwe
+      aku WKWKWKWKWWK), abistuu hari harii sprti biasaa cuman jadi penonton story yaa sering ngereply juga sii biar adaa
+      topik hhe, nahh Waktu ituu pas lagi asik cht an se inget aku lagi bahas rumaa kamu(cwe aku) kaya dimana blok apa
+      sama patokannya apaaa, nah disitu aku bilang kan "nanti kesitu ah mau digeber depan rumah nya liatin aja nanti klo
+      gapercaya mah" yaa kaya gitulah se inget aku mah isi cht an nya, nah abistu besokan nya ya kalua gasalah aku niat
+      mau beneran nyamperin ni kamu sm temen aku tapi sbelum itu aku beli bungaa putihh dulu buat apa? buat nanti
+      disimpan karna dapet bunga dari orang ganteng kaya aku😍, abisss belii bungaaa aku lanjutt ke rumaaa kamu buat
+      ngebuktiinnn kl ak beneran bakal datenggg xixixiii ,pas proses pencariannn rumaahh hijauu sicantiik ituu beberapa
+      kali aku nyasarr kaya ke kebon pisang sampe salah ngira rumahh untung nya itu bunga brlum di taro hehe,
+      dannnnnnnnnnn abiss ituuu ketemuuu lah samaaa 1 rumah hijauu besarrr ada jemurannn di depannnyaa karna kamu bilang
+      adaa jemurannn hitammm, pass bolak balik cek cek rumahh pas liat ke atas ternyataaa adaaa orangnyaaaaa guysss
+      HAHHAHAHA SICANTIKKK LAGI MAIN HP wkwkwwkk makinn yakinn deh galamaaa abisituu ancang ancangggg guys lemparr bunga
+      happpp masukkk kerumaanya langsunggg kaburrrrrrr wkwkwkwkw lucuunyaaaa, keliatan bgt cantiknya guys walaupun dari
+      jauh mata memandangggg😍😍, skippp ke esokann harinyaaa cht an lagiii kaya biasaaa udah mulai lamaaa guys cht an
+      nyaaa sampe jam 2 jam 3 ann pagiii huhuhuuuuuu seruuuuunyaa kamu juga nunujukinnn nge foto bungaa putihh ituu
+      darii akuu😍, nah padaaa suatuu ketikaa lagii cht ann pas pengen babaii buat booboo kamu ngodee ngodee buatt
+      pencet telp HAAHAHHAHAH GEMESS BGTT MASI INGET BGTT AKU GILAAK SENG INI KETIKAN INI SUATU HARI NANTI AKU BAKAL
+      KASI CERITA INI KE KAMU KAMU HARUS BACAA GEMES NYA KITA, next abiss ituu akhirrnyaaa ituu malamm pertamaaa
+      kitaaaaa sleep call guys aanjayyyyy senenggggg bgttt bgtt bgtttt karna selama cht an itu aku slalu minta kamu
+      buatt vn karnaaa kamu bilang gakmau gakmauu muluuu kaya maluu, kann Waktu cht an ituu kamu gombal gombal teaaa
+      seng berapaa kosonggggg yayaaa ,kamu jugaa suka mimiii waktuu ituuu wkwkw gemessssss bgtttt anjj yaampunnn, abis
+      ituuuuuu lanjuttttt hari harii cht ann cht annnnnn lamaaaaaa and padaa suatuu harii akuu inget banget nyamperin
+      kamuu lagiii dii portal ituuu pokokknya sama kenja sm idupp truss abiss itu mereka suruh ngumpet sm akuu ,aku
+      bilang ke kamu kalo aku sendiriannn disitu kamu nanyaa maudi samperin gaak? yaa maulah gilak kta akuteh disamperin
+      bidadariii princesssskuu, akhirnya kamu turun kebawahh diamm diamm dalam kegelapan ada sosokk wanitaa cantikkk
+      nyamperinn pas aku liat ternyataa kamuuu sicantikkkuu sayangku maniskuuuuuu bawaanya awalnya pasliat mauu pelukk
+      sii tadinyaa wkwkw mau nyosor juga cmn kan takut di tampol hehe, akhirnyaa kita ngobrol sebentarr bgtttt karna aku
+      gakuattt maluuuuu parahh sm kamuu yang cantikkk luarr biasaaaaa jadinya akuu pulangg dehhh(blm sempet minta
+      fotooo🥺), esokkk hariiinyaa masii cht an sepertii biasaa sepertii biasaaa nah pas posisinya udah mulai masuk
+      sekola nih (karna selama cht an ituu kan posisinya lgi liburr panjanggg) karna kebetulan aku disekola masi blm
+      belajar kaya biasaa yauda aku bilang ke kamu ini ituu smpe akhirnyaa aku minta ikut kamu buat cabutt hehe disituu
+      kita pertama kali nya keluarrr main bareng walaupun masi kaku kaku guys deg deg an tapi asikk bgttt bgtt bgtt kamu
+      orangnyaa yauda jadi dijalan pun kita gak terlalu kaku lah yayayaaa, karna selama cabut gatau tujuan nya mau
+      kemana akhirnya aku cuman bisa ngkut kamu yang mau nyore di ipb dehh pinggir danau diistu aku maluu gak di ajak
+      ngobrol sm km🥺, yayayaa pokonya akhirnya pas kita pulangg sampe rumahkita sprti biasa cht cht ann lagii sampe pas
+      lgi cht an kamu kiirim foto kitaaa lg boncengan yg di foto sm tmn kamuu, ituu foto pertama kitaaaa xixixi langusng
+      aku cuci fotonya wat di dompet hehee besoknyaaa.
+      okee guys abis tu hari hariii sprti biasaa cht an cht annn muali berani jemput kamu pas pulang sekolaaa jugaaak
+      trus trus tiap malam nya cht an sleepcall , truss disatu kesempatann aku ngajak kamu nontonn guyss film hantu
+      inget bgt sereemm sii tp karna ad kamu disamping jd aku karna orgnya penakut bisa modus ke kamu xixixi,setelah
+      ituu hari hari biasaanya kita mulai deket guysss temeen level berapa yahh? level 2 kali ya waktu ituma, singkatt
+      ceritaaa kita deket selama 1 tahunnn tanpa hbungan apaa apaa tp banyak kenangannya kya orang udah pacarannn
+      ,suatuu harii aku lagi sibuk sm sidangg pw komunikasi kita juga mulai ancurr akhirnyaaa disitu juga kamu bilang
+      kaya mau ngejauhinn akuuu ya aku ngerti si karna mungkin aku kelamaan jugaa nunda nyaa, tapi kan kenapa aku nundaa
+      jugaa karna kita sempet berantem besar ituuu gara gara aku berulah iseng jahatt🥺huhuuuuuu maaaffffff mungkin kamu
+      gabakal bisa lupa sm hal itu tp aku tetepp bakal usahaa pelan pelan buktiin aku bisa balikin kepercayaan kamu ke
+      akuuu and klo aku yang sekarang udah ga kaya gituu (udahh bersihhh bersih udahh amaan udah pantes wat kamuu😁😍),
+      karnaa kejadiaan ituu akhirnyaaa kita susah buat ketemuu bahkan kamu bilang udah gamau ketemu lg sm akuu, tp
+      disitu aku maksaa buat ketemu duluu sm kamuu mainn ps yap(spectrum).akhirnya kamu mau aku ajak satset kita sampe
+      di tempatt nyaa karna sepanjng nonton itu ga di tonton film nyaa tp aku ngemis ngemis ke kamuuu kl aku gamau
+      asingg gamauu jdi main yg terakhir saat ituuuu🥺🥺. selama nonton jugaa aku gaamau lepas sm km maunya pelukannnn
+      terusssss sampe satu kondisi muka kita deket bgt bgt karna kebawa suasana juga akhirnya aku cb cium bibir km
+      tapiiii gaadapett smpe beberapakalii akhirnya beneran nempell🥺(abis nempel ya lebih guys kita ciuman lama bgt
+      berantakan juga wkwkwk karna pertamakalii sii lagian kaget jugaa hehe disitu juga jdi dokumentasi pertama nakal
+      kitaaaaa) stelah kejadian ituu akhirnyaa kamu masi mau nerimaa akuu lgiiii masi mauu kenal sm akuuuuu huhuuu
+      terimakasihhhh princesssssssskuuu. kita lanjut bertemann romantis seeperti sblumnya cuman karna setelah kejadian
+      itu kamu jelas jadi beda bgt, ya aku si paham aku ngerti kondisi kamu. dan sekarang akhirnya? hubungan kita
+      selesai karna kecorobohan kita berdua yah sebenrnya ini bisa masi Panjang kalo kita gak selesai tapi ya mau gimana
+      lagi akhirnya jadi kaya gini......
+
+      <br><br>
+      “Kebahagiaan sederhana adalah bisa melihat senyummu setiap hari 💖”
+    </p>
+  </div>
+</body>
+
+</html>

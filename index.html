@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surat wat sayangku yeyesprincess</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('BGOY.png') no-repeat center/cover;
+      flex-direction: column;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 650px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      color: #e63946;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .typing {
+      display: inline-block;
+      border-right: 3px solid #e63946;
+      font-size: 1.1rem;
+      color: #333;
+      overflow: hidden;
+      white-space: normal;
+      max-width: 0;
+      animation: typing 6s steps(80, end) forwards, blink 0.8s step-end infinite;
+    }
+
+    @keyframes typing {
+      from {
+        max-width: 0;
+      }
+
+      to {
+        max-width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Tombol umum */
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(45deg, #e63946, #ff758f);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(45deg, #ff3c5f, #ff9eb5);
+    }
+
+    /* Animasi tombol Next */
+    .next-btn {
+      opacity: 0;
+      animation: fadeInBtn 2s ease forwards;
+      animation-delay: 6s;
+    }
+
+    @keyframes fadeInBtn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== POPUP ===== */
+    .popup {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup-content h2 {
+      margin-bottom: 15px;
+      color: #e63946;
+    }
+
+    .popup-content input {
+      width: 80%;
+      padding: 10px;
+      border: 2px solid #e63946;
+      border-radius: 8px;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    .popup-content button {
+      background: linear-gradient(45deg, #e63946, #ff758f);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .popup-content button:hover {
+      background: linear-gradient(45deg, #ff3c5f, #ff9eb5);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hai Sayang ❤️</h1>
+    <p class="typing">Selamat Datang Di Surat yg selalu kamu tanyainnn.....</p>
+
+    <!-- Tombol Play Musik -->
+    <button class="btn" onclick="playMusic()">▶ Play Musik</button>
+
+    <!-- Tombol untuk lanjut -->
+    <button class="btn next-btn" onclick="bukaPopup()">Lanjut ➝</button>
+  </div>
+
+  <!-- Musik -->
+  <audio id="bgm" loop>
+    <source src="nightwm.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Popup -->
+  <div id="popup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2>Masukkan Kode Rahasia</h2>
+      <input type="password" id="kodeInput" placeholder="Kode rahasia...">
+      <br>
+      <button onclick="cekKode()">Kirim</button>
+      <button onclick="tutupPopup()" style="margin-top:10px;background:gray;">Batal</button>
+    </div>
+  </div>
+
+  <script>
+    function playMusic() {
+      let audio = document.getElementById("bgm");
+      audio.play();
+    }
+
+    function bukaPopup() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function tutupPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function cekKode() {
+      let kode = document.getElementById("kodeInput").value;
+      if (kode === "LOVE123") {
+        localStorage.setItem("akses", "true"); // simpan status
+        window.location.href = "foto.html";
+      } else {
+        alert("Kode salah! Tidak bisa masuk.");
+      }
+    }
+
+  </script>
+</body>
+
+</html>
