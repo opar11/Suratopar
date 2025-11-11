@@ -225,7 +225,6 @@
     <h1>Hai Sayang ❤️</h1>
     <p class="typing">Selamat Datang Di Surat yg selalu kamu tanyainnn.....</p>
 
-    <button class="btn" onclick="playMusic()">▶ Play Musik</button>
     <button class="btn next-btn" onclick="bukaPopup()">Lanjut ➝</button>
   </div>
 
@@ -243,30 +242,37 @@
     </div>
   </div>
 
-  <script>
-    function playMusic() {
-      let audio = document.getElementById("bgm");
-      audio.play();
-    }
+<script>
+  function playMusic() {
+    let audio = document.getElementById("bgm");
+    audio.play();
+  }
 
-    function bukaPopup() {
-      document.getElementById("popup").style.display = "flex";
-    }
+  function bukaPopup() {
+    document.getElementById("popup").style.display = "flex";
+  }
 
-    function tutupPopup() {
-      document.getElementById("popup").style.display = "none";
-    }
+  function tutupPopup() {
+    document.getElementById("popup").style.display = "none";
+  }
 
-    function cekKode() {
-      let kode = document.getElementById("kodeInput").value;
-      if (kode === "OPORYEYESMANTAP") {
-        localStorage.setItem("akses", "true");
-        window.location.href = "foto.html";
-      } else {
-        alert("Kode salah! Tidak bisa masuk.");
-      }
+  function cekKode() {
+    let kode = document.getElementById("kodeInput").value;
+
+    if (kode === "OPORYEYESMANTAP") {
+      localStorage.setItem("akses", "true");
+      window.location.href = "foto.html"; // jika benar, lanjut ke halaman berikut
+    } else {
+      alert("Kode salah! Kamu akan keluar dari halaman ini.");
+      // delay 1 detik biar alert sempat tampil dulu
+      setTimeout(() => {
+        window.location.href = "https://google.com"; // arahkan ke halaman lain
+      }, 1000);
     }
-  </script>
+  }
+</script>
+
 </body>
 </html>
+
 
