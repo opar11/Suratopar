@@ -19,6 +19,7 @@
       overflow: hidden;
     }
 
+    /* Canvas efek kembang api */
     canvas {
       position: fixed;
       top: 0;
@@ -28,6 +29,7 @@
       z-index: 0;
     }
 
+    /* Tombol umum */
     .btn {
       display: flex;
       justify-content: center;
@@ -57,16 +59,19 @@
       transform: scale(0.97);
     }
 
+    /* Container tombol navigasi (versi grid) */
     .nav-buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
       z-index: 2;
       position: relative;
       padding: 20px;
+      max-width: 800px;
+      width: 100%;
     }
 
+    /* Tombol kembali pojok kiri */
     .back-button {
       position: fixed;
       top: 20px;
@@ -79,6 +84,7 @@
       z-index: 2;
     }
 
+    /* Popup background */
     .popup {
       display: none;
       position: fixed;
@@ -93,6 +99,7 @@
       align-items: center;
     }
 
+    /* Isi popup */
     .popup-content {
       background: white;
       padding: 30px;
@@ -145,6 +152,7 @@
       }
     }
 
+    /* Gaya tombol hadiah */
     .gift-btn {
       display: flex;
       flex-direction: column;
@@ -168,6 +176,7 @@
       transform: scale(1.1);
     }
 
+    /* Kotak teks di bawah gambar */
     .label-box {
       background: rgba(255, 77, 166, 0.1);
       border: 2px solid #ff4da6;
@@ -184,11 +193,13 @@
       transform: scale(1.05);
     }
 
+    /* Tombol kunci */
     .lock-btn {
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
 
     .lock-img {
@@ -201,19 +212,11 @@
       transform: scale(1.1);
     }
 
-    /* 🔹 MEDIA QUERY UNTUK RESPONSIF 🔹 */
+    /* 🌸 MEDIA QUERY RESPONSIF 🌸 */
     @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-size: cover;
-        background-position: center;
-      }
-
       .nav-buttons {
-        flex-direction: column;
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
       }
 
       .gift-btn img {
@@ -223,6 +226,10 @@
       .label-box {
         font-size: 14px;
         padding: 5px 10px;
+      }
+
+      .lock-img {
+        width: 80px;
       }
 
       .popup-content {
@@ -243,15 +250,16 @@
         font-size: 12px;
         padding: 8px 14px;
       }
-
-      .lock-img {
-        width: 80px;
-      }
     }
 
     @media (max-width: 480px) {
+      .nav-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
       .gift-btn img {
-        width: 70px;
+        width: 75px;
       }
 
       .label-box {
@@ -320,7 +328,7 @@
       }
     }
 
-    // Kembang api
+    // --- Animasi Kembang Api ---
     const canvas = document.getElementById("fireworks");
     const ctx = canvas.getContext("2d");
     let particles = [];
@@ -391,4 +399,5 @@
     });
   </script>
 </body>
+
 </html>
